@@ -1,7 +1,13 @@
 import gradio as gr
 import skops.io as sio
+from skops.io import get_untrusted_types
 
-pipe = sio.load("./Model/drug_pipeline.skops", trusted=True)
+
+
+# Define trusted types
+trusted_types = ['numpy.dtype']
+pipe = sio.load("./Model/drug_pipeline.skops", trusted=trusted_types)
+
 
 
 def predict_drug(age, sex, blood_pressure, cholesterol, na_to_k_ratio):
@@ -42,7 +48,7 @@ examples = [
 
 title = "Drug Classification"
 description = "Enter the details to correctly identify Drug type?"
-article = "This app is a part of the **[Beginner's Guide to CI/CD for Machine Learning](https://www.datacamp.com/tutorial/ci-cd-for-machine-learning)**. It teaches how to automate training, evaluation, and deployment of models to Hugging Face using GitHub Actions."
+article=""
 
 
 gr.Interface(
